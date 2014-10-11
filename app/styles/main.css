@@ -1,0 +1,363 @@
+html, body {
+    background: #ececec;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.v-align {
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container {
+    background: #fff;
+    width: 460px;
+    padding: 10px;
+    margin: 0 auto;
+    overflow: auto;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.col-l, .col-r {
+    float: left;
+    min-height: 1px;
+    height: 100%;
+}
+
+.col-l {
+    width: 180px;
+    position: relative;
+}
+.col-r {
+    width: 293px;
+    margin-left: -37px;
+}
+
+#droparea {
+    position: relative;
+    text-align: center;
+    height: 200px;
+    width: 436px;
+    margin: 10px;
+    background: #c1c1c1;
+    border: 2px dashed #d7d7d7;
+    outline: 10px solid #c1c1c1;
+    color: #fff;
+    transition: 0.1s all;
+}
+
+#instruction {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    padding: 0 20px;
+}
+
+#instruction p {
+    font-size: 28px;
+    margin: 0;
+}
+
+.andro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+.andro:before, .andro:after {
+    content: "";
+    display: block;
+    background-color: #fff;
+    transition: 0.25s all;
+    margin: 0 auto;
+}
+.andro:before {
+    width: 68px;
+    height: 34px;
+    -webkit-mask: url('../images/andro-head.png') no-repeat top center;
+    margin-bottom: 5px;
+    transform-origin: bottom left;
+}
+
+.andro:after {
+    width: 106px;
+    height: 85px;
+    -webkit-mask: url('../images/andro-body.png') no-repeat top center;
+}
+
+#droparea.over .andro:before {
+    transform: rotate(-30deg);
+    transform-origin: bottom left;
+}
+
+#droparea.white .andro:before, #droparea.white .andro:after {
+    background-color: #a9ca43;
+}
+
+#droparea.error .andro:before, #droparea.error .andro:after {
+    background-color: #b82612;
+}
+
+#source_step, #target_step, #final_step {
+    overflow-y: hidden;
+    transition: all 1.0s;
+    padding-top: 12px;
+    max-height: 250px;
+}
+
+.closed {
+    padding: 0 !important;
+    max-height: 0 !important;
+}
+
+#source_btn, #target_btn {
+    background: #ffa313 url('../images/arrow.png') no-repeat;
+    background-position: right 20px center;
+}
+
+label {
+    color: #fff;
+    width: 147px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin-right: 9px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+label:nth-of-type(3n) {
+    margin-right: 0;
+}
+
+label span {
+    background-color: #444;
+    text-align: center;
+    padding: 15px 0px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.5s;
+}
+label input {
+    display: none;
+}
+
+label input:checked + span {
+    background: #a4c739;
+}
+
+label input:disabled + span {
+    background: #dfdfdf;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    border: none;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ffa313;
+    cursor: pointer;
+}
+
+#final {
+    margin-top: 22px;
+    display: none;
+}
+
+#download_btn, #donate_btn {
+    width: 49%;
+    float: left;
+}
+
+#download_btn {
+    background: #b8b8b8;
+    margin-right: 2%;
+}
+
+#droparea.white {
+    background: #fff;
+    border: none;
+    outline: none;
+    color: #000;
+}
+
+.icon  {
+    display: block;
+    float: left;
+    width: 60px;
+    height: 60px;
+    background: transparent no-repeat center center;
+}
+
+.icon:after {
+    content: "";
+    float: right;
+    width: 1px;
+    height: 70%;
+    background: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+
+.icon-box {
+    background-image: url('../images/box.png');
+}
+.icon-beer {
+    background-image: url('../images/beer.png');
+}
+
+.footer {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 30px;
+    opacity: 0.6;
+}
+
+.footer p {
+    margin: 0;
+    line-height: 16px;
+}
+
+a {
+    color: #262626;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@-webkit-keyframes shake {
+	0%, 100% { transform: translate(0px); }
+	25% { transform: translate(3px); }
+	75% { transform: translate(-3px); }
+}
+
+#droparea.shake .andro:before {
+    -webkit-animation: shake 0.5s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+#privacy {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 460px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 24px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.25s, opacity 0.25s;
+}
+
+#privacy.open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+.inner {
+    margin: 20px;
+    overflow: auto;
+    height: 370px;
+}
+
+.head {
+    margin: 20px 20px 0 20px;
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.head span {
+    float: left;
+}
+
+.close {
+    background: url('../images/close.png') no-repeat;
+    height: 18px;
+    width: 18px;
+    display: block;
+    float: right;
+}
+
+
+#forkongithub a {
+    display: block;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 1rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+}
+#forkongithub a:hover {
+    background: #a4c739;
+    color: #fff;
+}
+#forkongithub a::before, #forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+@media screen and (min-width:640px) {
+    #forkongithub {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        width: 200px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 9999;
+    }
+
+    #forkongithub a {
+        width: 200px;
+        position: absolute;
+        top: 60px;
+        right: -60px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+}

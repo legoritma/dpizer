@@ -1,0 +1,8 @@
+{
+  "name": "dpizer",
+  "private": true,
+  "dependencies": {
+    "jszip": "Stuk/jszip#~2.4.0",
+    "FileSaver.js": "legoritma/FileSaver.js"
+  }
+}
