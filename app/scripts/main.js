@@ -264,12 +264,38 @@ function resizeImage(file, ratio, fullPath) {
         
         img.setAttribute('src', e.target.result);
         var ctx = canvas.getContext("2d");
-        var width = img.width * ratio;
-        var height = img.height * ratio;
-        
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
+        var stepSize = 0.5;
+        var steps = Math.ceil(Math.log(1 / ratio) / Math.log(1 / stepSize));
+
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+
+        if (steps > 1) {
+            // step resize for proper interpolation
+            var oc = document.createElement('canvas');
+            var octx = oc.getContext('2d');
+            var stepRatio = stepSize;
+            oc.width  = img.width  * stepSize;
+            oc.height = img.height * stepSize;
+
+            octx.drawImage(img, 0, 0, oc.width, oc.height);
+
+            while (--steps > 1) {
+                octx.drawImage(oc, 0, 0, oc.width * stepSize, oc.height * stepSize);
+                stepRatio *= stepSize;
+            }
+
+            var finalRatio = ratio / stepRatio;
+            octx.drawImage(oc, 0, 0, oc.width * finalRatio, oc.height * finalRatio);
+
+            ctx.drawImage(
+                oc,
+                0, 0, canvas.width, canvas.height,
+                0, 0, canvas.width, canvas.height
+            );
+        } else {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
         
         var dataurl = canvas.toDataURL(file.type);
         zip.file(fullPath, dataurl.split(',')[1], {base64: true});
